@@ -9,7 +9,7 @@
 <body class="bg-gray-100 py-10">
     <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
         <h1 class="text-2xl font-bold mb-6 text-gray-800">Attendance Form</h1>
-        <form id="attendanceForm" class="space-y-4">
+        <form id="attendanceForm" class="space-y-4" onsubmit="submitForm(event)">
             <!-- First Section -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -18,7 +18,8 @@
                 </div>
                 <div>
                     <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
-                    <input type="text" id="lastName" name="lastName" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                    <input type="text" id="lastName" name="lastNa
+                    me" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
                 </div>
                 <div>
                     <label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth</label>
@@ -75,25 +76,61 @@
           <div class="font-extralight mb-2">Search:
             <input type="search" name="" id="searchData" class="border border-black rounded">
           </div>
+          <div class="overflow-x-auto">
             <table class="w-full border-collapse border border-gray-300">
-                <thead>
-                    <tr class="bg-gray-200">
-                        <th class="border border-gray-300 p-2">First Name</th> X
-                        <th class="border border-gray-300 p-2">Last Name</th>
-                        <th class="border border-gray-300 p-2">Date of Birth</th>
-                        <th class="border border-gray-300 p-2">Gender</th>
-                        <th class="border border-gray-300 p-2">Class</th>
+                <thead> 
+                    <tr class="bg-gray-200 ">
+                        <th class="border border-gray-300 p-8">First Name</th> 
+                        <th class="border border-gray-300 p-8">Last Name</th>
+                        <th class="border border-gray-300 p-8">Date of Birth</th>
+                        <th class="border border-gray-300 p-4">Gender</th>
+                        <th class="border border-gray-300 p-6">Class</th>
                         <th class="border border-gray-300 p-2">Roll Number</th>
-                        <th class="border border-gray-300 p-2">Father's Name</th>
-                        <th class="border border-gray-300 p-2">Mother's Name</th>
-                        <th class="border border-gray-300 p-2">Mobile Number</th>
-                        <th class="border border-gray-300 p-2">Address</th>
+                        <th class="border border-gray-300 p-12">Father's Name</th>
+                        <th class="border border-gray-300 p-12">Mother's Name</th>
+                        <th class="border border-gray-300 p-8">Mobile Number</th>
+                        <th class="border border-gray-300 p-8">Address</th>
+                        <th class="border border-gray-300 p-8">Edit Action</th>
+                        <th class="border border-gray-300 p-8">Delete Action</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody"></tbody>
             </table>
         </div>
+        </div>
     </div> 
+
+ <!-- Popup Message -->
+ <div id="popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg relative w-96">
+        <button id="closePopup" class="absolute top-2 right-2 text-gray-500 hover:text-red-600">
+            &times;
+        </button>
+        <h2 class="text-xl font-bold text-gray-800">Form Submitted Successfully!</h2>
+        <p class="mt-4 text-gray-600">Your data has been recorded.</p>
+    </div>
+</div>
+
+<!-- JavaScript for Popup -->
+<script>
+    // Show popup
+    function showPopup() {
+        document.getElementById('popup').classList.remove('hidden');
+    }
+
+    // Close popup
+    document.getElementById('closePopup').addEventListener('click', () => {
+        document.getElementById('popup').classList.add('hidden');
+    });
+
+    // Submit form
+    function submitForm(event) {
+        event.preventDefault();
+        // Add your form submission logic here
+        showPopup();
+    }
+</script>
+
     <script src="./index.js"></script>
 </body>
 </html>
